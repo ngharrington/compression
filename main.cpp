@@ -1,20 +1,24 @@
-#include <fstream>
-#include <iterator>
-#include <vector>
 #include <iostream>
-#include <string>
+#include <sstream>
+#include <vector>
+#include <iterator>
 
-void extract_data(std::string filepath, std::vector<char>* v) {
-    std::ifstream input("./data.txt", std::ios::binary);
-    v->assign(
-        (std::istreambuf_iterator<char>(input)),
-         (std::istreambuf_iterator<char>())
-    );
-    input.close();
+std::vector<int> getFrequencies(std::istream &in) {
+    std::vector<int> freq(128);
+    char current;
+    while (in.get(current)) {
+        freq[current]++;
+    }
+    
+    // we only support ascii so there are at most 256 codes.
+    return freq;
 }
 
 int main() {
-
-    std::vector<char> bytes;
-    extract_data("./data.txt", &bytes);
+    std::istringstream data("hello there");
+    std::istream x(data.rdbuf());
+    std::vector<int> freq = getFrequencies(x);
+    for (int i = 0; i < freq.size(); ++i) {
+        std::cout << i << " " << freq[i] << std::endl;
+    }
 }
