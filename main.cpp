@@ -4,13 +4,13 @@
 #include <iterator>
 
 std::vector<int> getFrequencies(std::istream &in) {
+    // we only support ascii so there are at most 128 codes.
     std::vector<int> freq(128);
     char current;
     while (in.get(current)) {
         freq[current]++;
     }
     
-    // we only support ascii so there are at most 256 codes.
     return freq;
 }
 
