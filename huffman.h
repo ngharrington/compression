@@ -1,4 +1,8 @@
 #include <queue>
+#include <iostream>
+#include <queue>
+#include <iostream>
+#include <vector>
 
 
 // compare weights of nodes in the code tree.
@@ -13,3 +17,5 @@ typedef std::priority_queue<Node*, std::vector<Node *>, Weight_compare> Forest;
 
 
 Forest initialize_forest(std::vector<unsigned int> freq);
+
+std::vector<unsigned int> compute_freq(std::istream &in);

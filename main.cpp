@@ -1,26 +1,9 @@
 #include "tree.h"
 #include "huffman.h"
 #include <iostream>
-#include <sstream>
 #include <vector>
-#include <iterator>
 #include <fstream>
-#include <string>
-#include <functional>
-#include <queue>
 
-
-std::vector<unsigned int> compute_freq(std::istream &in) {
-    // we only support ascii so there are at most 128 codes.
-    std::vector<unsigned int> freq(128);
-    char current;
-    while (in.get(current)) {
-        freq[current]++;
-    }
-    in.clear();
-    in.seekg(0, std::ios::beg);
-    return freq;
-}
 
 void compress(std::istream &in, std::ostream &out) {
     char current[1];
@@ -59,7 +42,8 @@ void print_queue(Forest q) { // NB: pass by value so the print uses a copy
 int main() {
     std::ifstream f("./data.txt");
     std::vector<unsigned int> freq = compute_freq(f);
-    Forest forest = initialize_forest(freq);
     print_freq(freq);
+    Forest forest = initialize_forest(freq);
+    // print_freq(freq);
     return 0;
 }

@@ -3,7 +3,7 @@ CXXFLAGS = -std=c++17 -Wall -pedantic-errors -g
 
 SRCS =  main.cpp tree.cpp huffman.cpp
 OBJS = ${SRCS:.cpp=.o}
-HEADERS = tree.h
+HEADERS = tree.h huffman.h
 
 MAIN = main
 

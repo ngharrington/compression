@@ -3,7 +3,7 @@
 #include "tree.h"
 #include "huffman.h"
 
-#include <queue>
+
 
 struct Weight_compare weight_compare;
 
@@ -18,5 +18,18 @@ Forest initialize_forest(std::vector<unsigned int> freq) {
         }
     }
     return q;
+}
+
+
+std::vector<unsigned int> compute_freq(std::istream &in) {
+    // we only support ascii so there are at most 128 codes.
+    std::vector<unsigned int> freq(128);
+    char current;
+    while (in.get(current)) {
+        freq[current]++;
+    }
+    in.clear();
+    in.seekg(0, std::ios::beg);
+    return freq;
 }
 
