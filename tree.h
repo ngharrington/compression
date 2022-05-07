@@ -4,13 +4,13 @@
 class Node {
     private:
         char data;
-        int weight;
+        unsigned int weight;
         Node *left;
         Node *right;
 
     public:
-        Node(char d, int w);
-        int GetWeight();
+        Node(char d, unsigned int w);
+        unsigned int GetWeight();
 
 };
 

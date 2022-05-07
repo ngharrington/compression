@@ -1,4 +1,5 @@
 #include "tree.h"
+#include "huffman.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -9,9 +10,9 @@
 #include <queue>
 
 
-std::vector<int> compute_freq(std::istream &in) {
+std::vector<unsigned int> compute_freq(std::istream &in) {
     // we only support ascii so there are at most 128 codes.
-    std::vector<int> freq(128);
+    std::vector<unsigned int> freq(128);
     char current;
     while (in.get(current)) {
         freq[current]++;
@@ -28,8 +29,8 @@ void compress(std::istream &in, std::ostream &out) {
     }
 }
 
-void print_freq(std::vector<int> freq) {
-    for (int i = 0; i < freq.size(); ++i) {
+void print_freq(std::vector<unsigned int> freq) {
+    for (unsigned int i = 0; i < freq.size(); ++i) {
         std::cout << i << " " << freq[i] << std::endl;
     }
 }
@@ -44,14 +45,8 @@ void program() {
     output.close();
 }
 
-struct weight_compare {
-    bool operator()(Node *n1, Node *n2) {
-        return n1->GetWeight() < n2->GetWeight();
-    }
-};
 
-
-typedef std::priority_queue<Node*, std::vector<Node *>, weight_compare> Forest;
+// typedef std::priority_queue<Node*, std::vector<Node *>, weight_compare> Forest;
 
 void print_queue(Forest q) { // NB: pass by value so the print uses a copy
     while(!q.empty()) {
@@ -60,24 +55,11 @@ void print_queue(Forest q) { // NB: pass by value so the print uses a copy
     }
     std::cout << '\n';
 }
-
-Forest initialize_forest(std::vector<int> freq) {
-    Forest q = Forest();
-    for (int i = 0; i < freq.size(); ++i) {
-        if ( freq[i] > 0 ) {
-            // initialize a node where the data is the ascii character associated with the array index 
-            // and the weight is the frequency of that character.
-            Node *n = new Node(char(i), freq[i]);
-            q.push(n);
-            print_queue(q);
-        }
-    }
-    return q;
-}
  
 int main() {
     std::ifstream f("./data.txt");
-    std::vector<int> freq = compute_freq(f);
+    std::vector<unsigned int> freq = compute_freq(f);
     Forest forest = initialize_forest(freq);
+    print_freq(freq);
     return 0;
 }

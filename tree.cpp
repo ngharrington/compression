@@ -3,11 +3,11 @@
 #include <queue>
 #include <iostream>
 
-Node::Node(char d, int w) {
+Node::Node(char d, unsigned int w) {
     data = d;
     weight = w;
 }
 
-int Node::GetWeight() {
+unsigned int Node::GetWeight() {
     return weight;
 }
