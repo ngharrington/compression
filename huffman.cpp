@@ -5,6 +5,7 @@
 
 #include <queue>
 
+struct Weight_compare weight_compare;
 
 Forest initialize_forest(std::vector<unsigned int> freq) {
     Forest q = Forest();
