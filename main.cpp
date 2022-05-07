@@ -1,7 +1,6 @@
 #include "tree.h"
 #include "huffman.h"
 #include <iostream>
-#include <vector>
 #include <fstream>
 
 
@@ -12,7 +11,7 @@ void compress(std::istream &in, std::ostream &out) {
     }
 }
 
-void print_freq(std::vector<unsigned int> freq) {
+void print_freq(Freq_v freq) {
     for (unsigned int i = 0; i < freq.size(); ++i) {
         std::cout << i << " " << freq[i] << std::endl;
     }
@@ -29,8 +28,6 @@ void program() {
 }
 
 
-// typedef std::priority_queue<Node*, std::vector<Node *>, weight_compare> Forest;
-
 void print_queue(Forest q) { // NB: pass by value so the print uses a copy
     while(!q.empty()) {
         std::cout << q.top()->GetWeight() << ' ';
@@ -41,7 +38,7 @@ void print_queue(Forest q) { // NB: pass by value so the print uses a copy
  
 int main() {
     std::ifstream f("./data.txt");
-    std::vector<unsigned int> freq = compute_freq(f);
+    Freq_v freq = compute_freq(f);
     print_freq(freq);
     Forest forest = initialize_forest(freq);
     // print_freq(freq);

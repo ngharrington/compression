@@ -7,7 +7,7 @@
 
 struct Weight_compare weight_compare;
 
-Forest initialize_forest(std::vector<unsigned int> freq) {
+Forest initialize_forest(Freq_v freq) {
     Forest q = Forest();
     for (unsigned int i = 0; i < freq.size(); ++i) {
         if ( freq[i] > 0 ) {
