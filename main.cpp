@@ -29,11 +29,14 @@ void print_queue(Forest q) { // NB: pass by value so the print uses a copy
     }
     std::cout << '\n';
 }
+
  
 int main() {
     std::ifstream f("./data/data.txt");
     Freq_v freq = compute_freq(f);
     Node* n = compute_huffman_tree(freq);
     print_tree(n);
+    std::ofstream f2("out.txt");
+    write_traversals(n, f2);
     return 0;
 }
