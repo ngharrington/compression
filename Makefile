@@ -5,10 +5,10 @@ SRCS =  main.cpp tree.cpp huffman.cpp
 OBJS = ${SRCS:.cpp=.o}
 HEADERS = tree.h huffman.h
 
-MAIN = main
+MAIN = huffman
 
 all: ${MAIN}
-	@echo   main has been compiled
+	@echo   huffman has been compiled
 
 ${MAIN}: ${OBJS}
 	${CXX} ${CXXFLAGS} ${OBJS} -o ${MAIN}
